@@ -5,3 +5,5 @@ clip_embeddings.npy
 .idea
 /assets
 /data
+/.venv
+_pycache_
