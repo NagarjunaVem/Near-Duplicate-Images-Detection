@@ -12,7 +12,7 @@ META_PATH = DATA_DIR / "clip_embeddings_meta.csv"
 FAISS_PATH = DATA_DIR / "ndid_faiss.index"
 
 TOP_K = 5
-CLIP_THRESHOLD = 0.82
+CLIP_THRESHOLD = 0.85
 PHASH_THRESHOLD = 5
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"

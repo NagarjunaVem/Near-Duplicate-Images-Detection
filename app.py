@@ -13,7 +13,7 @@ clip_th = st.sidebar.slider(
     "CLIP similarity threshold",
     min_value=0.70,
     max_value=0.99,
-    value=0.90,
+    value=0.85,
     step=0.01
 )
 
