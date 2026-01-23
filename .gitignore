@@ -3,3 +3,5 @@ ndid_faiss.index
 clip_embeddings_meta.csv
 clip_embeddings.npy
 .idea
+/assets
+/data
