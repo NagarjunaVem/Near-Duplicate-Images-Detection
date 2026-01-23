@@ -6,5 +6,5 @@ clip_embeddings.npy
 /assets
 /data
 /.venv
-/_pycache_
-/ndid/_pycache_
+/__pycache__
+/ndid/__pycache__
