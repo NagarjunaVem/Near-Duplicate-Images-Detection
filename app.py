@@ -5,6 +5,7 @@ from ndid.ndid_logic import ndid_decision
 from pathlib import Path
 import uuid
 from ndid.online_update import add_non_duplicate
+from ndid.guard import phash_guard
 
 NON_DUP_DIR = Path("data/non_duplicates")
 NON_DUP_DIR.mkdir(parents=True, exist_ok=True)
@@ -49,32 +50,36 @@ if uploaded:
     elif "CLIP" in decision:
         st.warning(f"🟡 {decision}")
     else:
-        st.error("🔴 NOT DUPLICATE")
+        is_dup, dup_path = phash_guard(img, NON_DUP_DIR, threshold=0)
 
-    if decision == "NOT DUPLICATE":
-        fname = f"nd_{uuid.uuid4().hex[:8]}.jpg"
-        save_path = NON_DUP_DIR / fname
-        img.save(save_path, quality=95)
+        if is_dup:
+            st.success(f"🟢 DUPLICATE")
+        else:
+            st.error("🔴 NOT DUPLICATE")
 
-        meta_row = {
-            "image_path": str(save_path),
-            "group_id": fname.split(".")[0],
-            "transform": "original",
-            "is_original": 1,
-            "blurred": 0,
-            "brightened": 0,
-            "contrasted": 0,
-            "cropped": 0,
-            "original": 1
-        }
+            fname = f"nd_{uuid.uuid4().hex[:8]}.jpg"
+            save_path = NON_DUP_DIR / fname
+            img.save(save_path, quality=95)
 
-        add_non_duplicate(
-            embedding=q_emb,
-            image_path=str(save_path),
-            meta_row=meta_row
-        )
+            meta_row = {
+                "image_path": str(save_path),
+                "group_id": fname.split(".")[0],
+                "transform": "original",
+                "is_original": 1,
+                "blurred": 0,
+                "brightened": 0,
+                "contrasted": 0,
+                "cropped": 0,
+                "original": 1
+            }
 
-        st.success("Non-duplicate image added to NDID database.")
+            add_non_duplicate(
+                embedding=q_emb,
+                image_path=str(save_path),
+                meta_row=meta_row
+            )
+
+            st.success("Non-duplicate image added to NDID database.")
 
     st.write(f"Best pHash distance: {best_phash}")
 
