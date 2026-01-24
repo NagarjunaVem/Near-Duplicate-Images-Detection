@@ -54,6 +54,9 @@ if uploaded:
 
         if is_dup:
             st.success(f"🟢 DUPLICATE")
+            st.image(dup_path, width=300)
+            best_phash = 0
+
         else:
             st.error("🔴 NOT DUPLICATE")
 
@@ -90,7 +93,6 @@ if uploaded:
     else:
         n_cols = min(len(results), 5)
         cols = st.columns(n_cols)
-
         for col, r in zip(cols, results):
             with col:
                 st.image(r["image_path"], width=200)
