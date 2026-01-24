@@ -15,7 +15,7 @@ def ndid_decision(query_emb, query_img, clip_th, phash_th):
     decision = "NOT DUPLICATE"
     results = []
 
-    for rank, (sim, idx) in enumerate(zip(sims[1:], idxs[1:]), start=1):
+    for rank, (sim, idx) in enumerate(zip(sims[0:], idxs[0:]), start=0):
         img_path = Path(meta.iloc[idx]["image_path"])
         if not img_path.exists():
             continue
