@@ -16,3 +16,10 @@ def load_faiss():
         _index = faiss.read_index(str(FAISS_PATH))
 
     return _index, _embeddings, _meta
+
+def add_to_memory(embedding, meta_row):
+    global _index, _embeddings, _meta
+
+    _index.add(embedding)
+    _embeddings = np.vstack([_embeddings, embedding])
+    _meta = pd.concat([_meta, pd.DataFrame([meta_row])], ignore_index=True)

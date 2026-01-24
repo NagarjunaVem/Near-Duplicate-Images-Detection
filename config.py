@@ -11,6 +11,10 @@ EMB_PATH = DATA_DIR / "clip_embeddings.npy"
 META_PATH = DATA_DIR / "clip_embeddings_meta.csv"
 FAISS_PATH = DATA_DIR / "ndid_faiss.index"
 
+NON_DUP_DIR = Path("data/non_duplicates")
+NON_DUP_DIR.mkdir(parents=True, exist_ok=True)
+
+
 TOP_K = 5
 CLIP_THRESHOLD = 0.85
 PHASH_THRESHOLD = 5
