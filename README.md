@@ -37,7 +37,8 @@ Near-Duplicate-Images-Detection/
 │   ├── faiss_index.py
 │   ├── ndid_logic.py
 |   ├── phash.py
-│   └── online_update.py
+|   ├── online_update.py
+│   └── guard.py
 ├── data/
 │   ├── non_duplicates/
 │   ├── clip_embeddings.npy
