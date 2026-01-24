@@ -35,7 +35,13 @@ Near-Duplicate-Images-Detection/
 │   ├── embedding.py
 │   ├── faiss_index.py
 │   ├── ndid_logic.py
-│   └── phash.py
+|   ├── phash.py
+│   └── online_update.py
+├── data/
+│   ├── non_duplicates/
+│   ├── clip_embeddings.npy
+│   ├── clip_embeddings_meta.csv
+│   └── ndid_faiss.index
 ├── notebooks/
 │   ├── classification.ipynb
 │   ├── data_input.ipynb
